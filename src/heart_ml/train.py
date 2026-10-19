@@ -7,6 +7,7 @@ from pathlib import Path
 
 import joblib
 import matplotlib
+
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import mlflow
@@ -16,8 +17,13 @@ import seaborn as sns
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import (
-    accuracy_score, classification_report, confusion_matrix, precision_score,
-    recall_score, roc_auc_score, RocCurveDisplay,
+    RocCurveDisplay,
+    accuracy_score,
+    classification_report,
+    confusion_matrix,
+    precision_score,
+    recall_score,
+    roc_auc_score,
 )
 from sklearn.model_selection import StratifiedKFold, cross_validate, train_test_split
 from sklearn.pipeline import Pipeline

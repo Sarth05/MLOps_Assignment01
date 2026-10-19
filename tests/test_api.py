@@ -1,7 +1,7 @@
-from fastapi.testclient import TestClient
 import numpy as np
+from fastapi.testclient import TestClient
 
-import heart_ml.api as api
+from heart_ml import api
 
 
 class DummyModel:
