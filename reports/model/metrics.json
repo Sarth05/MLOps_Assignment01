@@ -1,0 +1,47 @@
+{
+  "selected_model": "logistic_regression",
+  "features": [
+    "age",
+    "trestbps",
+    "chol",
+    "thalach",
+    "oldpeak",
+    "sex",
+    "cp",
+    "fbs",
+    "restecg",
+    "exang",
+    "slope",
+    "ca",
+    "thal"
+  ],
+  "target_mapping": "original 0 -> 0; original 1-4 -> 1",
+  "selection_rule": "highest mean 5-fold CV ROC-AUC on training split",
+  "random_state": 42,
+  "test_size": 0.2,
+  "results": {
+    "logistic_regression": {
+      "accuracy": 0.8688524590163934,
+      "precision": 0.8125,
+      "recall": 0.9285714285714286,
+      "roc_auc": 0.9664502164502166,
+      "cv_accuracy_mean": 0.8551870748299321,
+      "cv_accuracy_std": 0.023767881465657423,
+      "cv_precision_mean": 0.8730744935655421,
+      "cv_recall_mean": 0.8098814229249012,
+      "cv_roc_auc_mean": 0.9024779568257829
+    },
+    "random_forest": {
+      "accuracy": 0.8852459016393442,
+      "precision": 0.8181818181818182,
+      "recall": 0.9642857142857143,
+      "roc_auc": 0.9512987012987013,
+      "cv_accuracy_mean": 0.8016156462585033,
+      "cv_accuracy_std": 0.016931380376262697,
+      "cv_precision_mean": 0.7830831426392066,
+      "cv_recall_mean": 0.791699604743083,
+      "cv_roc_auc_mean": 0.8975012105446888
+    }
+  },
+  "note": "Educational model only; not clinically validated."
+}

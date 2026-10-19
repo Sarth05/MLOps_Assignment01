@@ -1,0 +1,42 @@
+name: CI — test and train
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  quality-and-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install -e .
+      - name: Lint
+        run: ruff check src tests scripts
+      - name: Unit tests
+        run: pytest -q
+      - name: Download data and smoke-train
+        run: |
+          python -m heart_ml.data --output data/raw/heart.csv
+          python -m heart_ml.train --data data/raw/heart.csv --output models --reports reports/model --experiment github-actions-smoke
+      - name: Upload model and metrics artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: training-artifacts
+          path: |
+            models/metadata.json
+            reports/model/metrics.json
+            reports/model/*.png
+          if-no-files-found: warn
